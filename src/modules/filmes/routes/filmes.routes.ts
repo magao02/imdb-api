@@ -161,7 +161,7 @@ const filmesRouter = Router();
 const filmesController = new FilmesController();
 const upload = multer(uploadConfig);
 
-filmesRouter.get('/', filmesController.index);
+filmesRouter.get('/', isAuthenticated, filmesController.index);
 filmesRouter.get(
   '/genero/:genero',
   isAuthenticated,
@@ -175,6 +175,7 @@ filmesRouter.get(
 
 filmesRouter.get(
   '/:id',
+  isAuthenticated,
   celebrate({
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),
@@ -185,6 +186,7 @@ filmesRouter.get(
 
 filmesRouter.get(
   '/nome/:nome',
+  isAuthenticated,
   celebrate({
     [Segments.PARAMS]: {
       nome: Joi.string().required(),
@@ -215,6 +217,8 @@ filmesRouter.post(
 
 filmesRouter.delete(
   '/:id',
+  isAuthenticated,
+  isAuthorized('admin'),
   celebrate({
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),

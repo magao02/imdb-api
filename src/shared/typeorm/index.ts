@@ -1,3 +1,4 @@
+import * as dotenv from 'dotenv';
 import { DataSource } from 'typeorm';
 import Ator from '@modules/filmes/typeorm/entities/ator';
 import Filme from '@modules/filmes/typeorm/entities/filme';
@@ -12,14 +13,14 @@ import { CreateFilmesAtoresTable1720186557775 } from './migrations/1720186557775
 import { CreateUserTable1720187040476 } from './migrations/1720187040476-CreateUserTable';
 import { CreateNotasTable1720187049630 } from './migrations/1720187049630-CreateNotasTable';
 import { InsertUserAdmin1720188774044 } from './migrations/1720188774044-insertUserAdmin';
-
+dotenv.config();
 export const dataSource: DataSource = new DataSource({
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'postgres',
-  password: 'postgres',
-  database: 'postgres',
+  host: process.env.DB_HOST || 'localhost',
+  port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 5432,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   synchronize: false,
   entities: [Filme, User, Genero, Ator, Nota],
   migrations: [

@@ -10,7 +10,7 @@ import upload from '@config/upload';
 import { swaggerSpec } from '@config/swaggerConfig';
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 app.use('/files', express.static(upload.directory));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));

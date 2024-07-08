@@ -25,6 +25,16 @@ Essa api ela simula o cadastro, listagem e votação de filmes usando um sistema
   ```sh
     npm install
 
+3. **Usando Docker**
+ - lembre de configurar o .env.Example para .env
+ - Rodar o docker-compose
+ - ele irá rodar automaticamente o banco de dados e suas migrations e fazer conexão com o backend
+
+4.  **Usuario adm**
+- por default um usuario do tipo adm é criado no ao rodas as migrations
+- email: admin@email.com,
+	password: senha123
+
 
 ## Decisões Tomadas
 
@@ -49,4 +59,7 @@ Essa api ela simula o cadastro, listagem e votação de filmes usando um sistema
 
 - **Tratativa de erros:**
   Para essa tratativa criamos a entidade de AppError que usa no express um sistema para os lançamentos de erros assim todos os erros são tratados e lançado pelo mesmo código
+
+  - **Testes:**
+  Iria fazer os testes unitários usando Jest mas nao deu tempo de fazer a implementação
 
